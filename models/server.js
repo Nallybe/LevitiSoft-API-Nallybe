@@ -9,6 +9,7 @@ class Server{
         this.asignacionPath = "/api/asignacion"
         this.rolesPath = "/api/roles"
         this.permisosPath = "/api/permisos"
+        this.usuariosPath = "/api/usuarios"
         this.authPath = "/api/auth"
         this.middlewares()
         this.routes()
@@ -28,6 +29,7 @@ class Server{
         this.app.use(this.asignacionPath, require("../routes/asignacion"))
         this.app.use(this.rolesPath, require("../routes/roles"))
         this.app.use(this.permisosPath, require("../routes/permisos"))
+        this.app.use(this.usuariosPath, require("../routes/usuarios"))
     }
 
     listen(){

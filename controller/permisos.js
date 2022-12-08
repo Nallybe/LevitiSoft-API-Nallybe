@@ -39,7 +39,7 @@ const putPermisos = async(req, res)=>{
     })
 }
 
-//Modificaciones parciales
+/* //Modificaciones parciales
 const patchPermisos = async(req,res)=>{
     const { nombre, estado} = req.body
     const permisos = await Permisos.findOneAndUpdate({nombre: nombre}, {estado: estado})
@@ -48,7 +48,7 @@ const patchPermisos = async(req,res)=>{
         msg: "PATCH API Permisos",
         permisos
     })
-}
+} */
 
 //Eliminar
 const deletePermisos = async(req, res) =>{
@@ -66,6 +66,6 @@ module.exports = {
     getPermisos,
     postPermisos,
     putPermisos,
-    patchPermisos,
+    //patchPermisos,
     deletePermisos
 }

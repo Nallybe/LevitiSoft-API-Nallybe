@@ -1,42 +1,56 @@
 
 const { generarJWT } = require('../helpers/generar-jwt')
-const Roles = require ('../models/roles')
+const Usuario = require ('../models/usuario')
+const bcrypt = require('bcryptjs')
 
 //const {generarJWT} = require('../helpers/generar-jwt)
 
 const login = async (req, res)=>{
     //Desectructuración
-const { idRol, nombre } = req.body
+    const { correo, password } = req.body
 
     try {
-        //Verificar si el id rol existe
-        const roles = await Roles.findOne({idRol})
+        //Verificar si el correo existe
+        const usuarios = await Usuario.findOne({correo})
         
-        if(!roles){
+        if(!usuarios){
             return res.status(400).json({
-                msg: 'El id Rol no fue encontrado'})
+                msg: 'El correo no fue encontrado'})
         }
         //Verificar estado
-        if (roles.estado != true) {
+        if (usuarios.estado != true) {
             return res.status(400).json({
-                msg: 'El rol esta deshabilitado para acceder'})
+                msg: 'El usuario esta deshabilitado para acceder'})
         } 
-        //Verificar nombre
-        if (roles.nombre != nombre) {
-            return res.status(400).json({
-                msg: 'El nombre no corresponde al id rol buscado'})
-        }
+        
         
         //Generar el JWT: Jason Web Token
-        const token = await generarJWT(roles.id)
+        const token = await generarJWT(usuarios.id)
 
         return res.json({
-            roles,
+            usuarios,
             token
         })
-
+        
     } catch (err){
         console.log('Error, contacte al administrador' +  err)
+    }
+
+      //trycatch para la password
+      try {
+
+        const usuarios = await Usuario.findOne({ correo })
+
+        //Verificar password
+        const match = await bcrypt.compare(password, usuarios.password);
+        if (!match) {
+            return res.status(400).json({
+                msg: 'La contraseña no corresponde al correo buscado'
+            })
+        }
+
+    } catch (err) {
+        console.log('Error, contacte al administrador' + err)
     }
 
     

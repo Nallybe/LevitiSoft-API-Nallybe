@@ -40,7 +40,7 @@ const putAsignacion = async(req, res)=>{
 }
 
 //Modificaciones parciales
-const patchAsignacion = async(req,res)=>{
+/* const patchAsignacion = async(req,res)=>{
     const { idAsignacion, idRol, Estado} = req.body
     const asignacion = await Asignacion.findOneAndUpdate({idAsignacion: idAsignacion}, {idRol: idRol, Estado: Estado})
 
@@ -48,7 +48,7 @@ const patchAsignacion = async(req,res)=>{
         msg: "PATCH API Asignacion",
         asignacion
     })
-}
+} */
 
 //Eliminar
 const deleteAsignacion = async(req, res) =>{
@@ -66,6 +66,6 @@ module.exports = {
     getAsignacion,
     postAsignacion,
     putAsignacion,
-    patchAsignacion,
+    //patchAsignacion,
     deleteAsignacion
 }

@@ -2,13 +2,17 @@ const {Schema, model} = require('mongoose')
 
 const PermisosSchema = Schema ({
     idPermiso:{
-        type: Number
+        type: Number,
+        required: [true, 'El id permiso es obligatorio'],
+        unique: true
     },
     nombre:{
-        type: String
+        type: String,
+        required: [true, 'El nombre es obligatorio'],
     },
     estado:{
-        type: String
+        type: Boolean,
+        defaul: true
     }
 })
 

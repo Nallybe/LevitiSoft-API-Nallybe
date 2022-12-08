@@ -39,7 +39,7 @@ const putRoles = async(req, res)=>{
     })
 }
 
-//Modificaciones parciales
+/* //Modificaciones parciales
 const patchRoles = async(req,res)=>{
     const { idRol, nombre, estado} = req.body
     const roles = await Roles.findOneAndUpdate({idRol:idRol}, {nombre: nombre, estado: estado})
@@ -48,7 +48,7 @@ const patchRoles = async(req,res)=>{
         msg: "PATCH API Roles",
         roles
     })
-}
+} */
 
 //Eliminar
 const deleteRoles = async(req, res) =>{
@@ -66,6 +66,6 @@ module.exports = {
     getRoles,
     postRoles,
     putRoles,
-    patchRoles,
+    //patchRoles,
     deleteRoles
 }
